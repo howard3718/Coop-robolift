@@ -1,7 +1,7 @@
 %A function to find valid combinations when using worm and helical.
 
 function [potential] = whCombinations(helicRatios,wormRatios,ratio)
-    error = 0.01;
+    error = 0.5;
     
     rowH = size(helicRatios,1);
     rowW = size(wormRatios,1);
@@ -12,15 +12,20 @@ function [potential] = whCombinations(helicRatios,wormRatios,ratio)
     wormRatios = reshape(wormRatios,[],2);
     row = size(wormRatios,1);
     
-    calc = wormRatios(:,1) .* helicRatios(:,1);
-    test = calc - ratio.*ones(row,1);
-    potential = zeros(1,6);
-    pass = find(test < error & test >= 0);
-    rowP = size(pass,1);
-    potential(1:rowP,1) = wormRatios(pass,1);
-    potential(1:rowP,2) = helicRatios(pass,3);
-    potential(1:rowP,3) = helicRatios(pass,4);
-    potential(1:rowP,6) = helicRatios(pass,2) + wormRatios(pass,2);
+    n = 0;
     
-    %No repeatitions
+    calc = wormRatios(:,1)*helicRatios(:,1);
+    test = calc - ratio.*ones(rows,1);
+    potential = zeros(1,6);
+    for i = 1:row
+        if test(i) <= error
+            n = n+1;
+            potential(n,1) = wormRatios(i,1);
+            potential(n,2) = helicRatios(i,3);
+            potential(n,3) = helicRatios(i,4);
+            potential(n,6) = wormRatios(i,2) + helicRatios(i,2);
+        end
+    end
+    
+    
 end
