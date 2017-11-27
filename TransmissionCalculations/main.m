@@ -33,9 +33,8 @@ end
 
 %% Variables that can be changed. %%
 motorSpeedI = 100;
-helicalEfficiency = 0.95;
 folder = 'test1/';
-
+wormDiam = 0.012; %m
 
 %% Main Script %%
 
@@ -51,14 +50,14 @@ for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different mot
    
    potential = gearSelection(ratio,wormTab,helicalTab);
    
-   wormEfficiency = wormEfficiency();
-   efficiency = wormEfficiency*helicalEfficiency;
+   potential = efficiency(potential,motorSpeed,wormDiam);
    
-   motorTorque = mechanism.torque*efficiency*ratio; %this isnt includingn the error in ratio.
-   motorPower = motorTorque*motorSpeed*(30/pi());
-   
-   filename = strcat(folder,'power',num2str(motorPower),'torque',num2str(motorTorque),'speed',num2str(motorSpeed));
-   csvwrite(filename,potential);
+   %change this
+%    motorTorque = mechanism.torque*efficiency*ratio; %this isnt includingn the error in ratio.
+%    motorPower = motorTorque*motorSpeed*(30/pi());
+%    
+%    filename = strcat(folder,'power',num2str(motorPower),'torque',num2str(motorTorque),'speed',num2str(motorSpeed));
+%    csvwrite(filename,potential);
 end
    
    
