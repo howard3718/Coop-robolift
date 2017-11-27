@@ -37,7 +37,7 @@ helicalTab = csvread('helical05.csv');
 %% Variables that can be changed. %%
 motorSpeedI = 100;
 helicalEfficiency = 0.95;
-folder = 'test2/';
+folder = 'testEff1/';
 
 
 %% Main Script %%
