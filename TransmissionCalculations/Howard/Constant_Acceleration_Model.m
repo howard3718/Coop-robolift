@@ -1,4 +1,6 @@
+clear all
 
+tic
 
 %Set time step
 dt = 1e-5;
@@ -46,3 +48,5 @@ ylabel('Position, Speed and Accel');
 title(['dt = ' num2str(dt)])
 
 legend('Power', 'Position', 'Speed', 'Acceleration');
+
+toc
