@@ -11,7 +11,7 @@ function [ratios] = helicRatio(helicTab)
     for i = 1:rowH
         ne = ns + (rowH - 1);
         rearrangeHelic(ns:ne,1) = ones(rowH,1) .* helicTab(i,1);
-        rearrangeHelic(ns:ne,2) = ones(rowH,2) .* helicTab(i,2);
+        rearrangeHelic(ns:ne,2) = ones(rowH,1) .* helicTab(i,2);
         ns = ne + 1;
     end
     
@@ -23,7 +23,7 @@ function [ratios] = helicRatio(helicTab)
         ratios(i,1) = repHelicTab(i,1)/rearrangeHelic(i,1);
         ratios(i,2) = repHelicTab(i,2) + rearrangeHelic(i,2);
     end
-    ratios(:,3) = repHelicTab;
-    ratios(:,4) = rearrangeHelic;
+    ratios(:,3) = repHelicTab(:,1);
+    ratios(:,4) = rearrangeHelic(:,1);
     
 end

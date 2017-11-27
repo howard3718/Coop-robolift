@@ -33,7 +33,7 @@ end
 
 %% Variables that can be changed. %%
 motorSpeedI = 100;
-folder = 'test1/';
+folder = 'testEff1/';
 wormDiam = 0.012; %m
 
 %% Main Script %%
@@ -48,7 +48,7 @@ for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different mot
    
    transmission.ratio = motorSpeed/mechanism.speed; %calculate ratio
    
-   potential = gearSelection(ratio,wormTab,helicalTab);
+   potential = gearSelection(transmission.ratio,wormTab,helicalTab);
    
    potential = efficiency(potential,motorSpeed,wormDiam);
    
@@ -64,5 +64,5 @@ end
        
     
     
-end
+
     

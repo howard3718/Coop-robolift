@@ -20,7 +20,7 @@ function [potential] = gearSelection(ratio,wormTab,helicalTab) %for now leaving 
     end
     
     rows = size(potential,1);
-    potential2 = hhCombinations(helicalRatios,ratio);
+    potential2 = hhCombinations(helicRatios,ratio);
     rows2 = size(potential2,1);
     if sum(potential) == 0
         potential = potential2;
