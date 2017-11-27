@@ -33,8 +33,9 @@ end
 
 %% Variables that can be changed. %%
 motorSpeedI = 100;
+
+helicalEfficiency = 0.95;
 folder = 'testEff1/';
-wormDiam = 0.012; %m
 
 %% Main Script %%
 
