@@ -56,33 +56,36 @@ a = 2*s/(time^2);
 %power required to drive up the load
 
 %note the power changes as the speed changes with constact acceleration
-step = 0.1;
+step = 0.0001;
 frictionPower = zeros(1,(time/step)+1); %preallocate array space
 liftingPower = zeros(1,(time/step)+1);
 motorPower = zeros(1,(time/step)+1);
 timeArray = 0:step:time;                %for the power time plot
 velocity = zeros(1,(time/step)+1);      
 omegaArray = zeros(1,(time/step)+1);
-
 for t = 0:step:time
     v = a*t;
-    omega = 2*pi*v/pitch;
+    omega = 2*pi*v/pitch;   
     velocity(1,round(t/step)+1) = v;
     omegaArray(1,round(t/step)+1) = omega;
-    theta = acos((a*t+lengthDouble*cos(minTheta))/lengthDouble);
+    theta = acos((-0.5*a*t^2+initialX)/lengthDouble);
     
     %both the angle and the speed are changing
     %the change in angle theta is realated to speed using the following
     %equation
-    frictionPower(1,round(t/step)+1) = ((tan(leadPhi)+muKinetic)/(1-muKinetic*tan(leadPhi)))*(W/tan(theta))*meanRadius*omega;
+    frictionPower(1,round(t/step)+1) = ((tan(leadPhi)+muKinetic)/(1-muKinetic*tan(leadPhi)))*((W + mass*a)/tan(theta))*meanRadius*omega;
     
-    liftingPower(1,round(t/step)+1) = ((W+125*a)/tan(theta))*v;
+%     liftingPower(1,round(t/step)+1) = ((W+mass*a)/tan(theta))*v;
     
-    motorPower(1,round(t/step)+1) = frictionPower(1,round(t/step)+1)+liftingPower(1,round(t/step)+1);
+    motorPower(1,round(t/step)+1) = frictionPower(1,round(t/step)+1);
 end
 %no idea why i have to round those values...
 
-plot(timeArray,motorPower)
+plot(timeArray,motorPower);
+xlabel('Time (s)');
+ylabel('Power (W)');
+title('For constant acceleration of screw linearly');
+
 
 %write a function relating x and y using the formula y= x*tan(theta)
 function y = yValue(x,theta)

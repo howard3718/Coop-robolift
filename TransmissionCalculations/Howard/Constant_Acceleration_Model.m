@@ -34,7 +34,7 @@ for step = 1:1:(length(time)-1)
    x(step + 1) = x(step) + x_1(step)*dt;
 end
 
-P = x .* x_1 ./ (armlength^2 + x.^2) .* (weight + mass.*x_2 + (tanphi + mu_k)/(1 - mu_k*tanphi)*weight/tanphi);
+P = (armlength - x) .* x_1 ./ (armlength^2 + x.^2) .* (weight + mass.*x_2 + (tanphi + mu_k)/(1 - mu_k*tanphi)*weight/tanphi);
 
 yyaxis left
 plot(time, P);
