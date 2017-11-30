@@ -117,7 +117,7 @@ function [potential] = whhCombinations(helicRatios,wormRatios,ratio)
     
     potential = [potential1;potential2;potential3;potential4];
     
-    %Not included for simplicity. 
+%     %Not included for simplicity. 
 %     tic
 %     compare = potential;
 %     compare(:,2:3) = potential(:,4:5);

@@ -26,4 +26,8 @@ function [ratios] = helicRatio(helicTab)
     ratios(:,3) = repHelicTab(:,1);
     ratios(:,4) = rearrangeHelic(:,1);
     
+    %exclude ratios that are less than 1.
+    remove = find(ratios(:,1) <= 1);
+    ratios(remove,:) = [];
+    
 end

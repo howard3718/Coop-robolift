@@ -33,7 +33,7 @@ end
 
 %% Variables that can be changed. %%
 motorSpeedI = 100;
-
+wormDiam = 0.012; %m
 helicalEfficiency = 0.95;
 folder = 'testEff1/';
 
@@ -44,6 +44,7 @@ mechanism.torque = 3; %Nm
 
 wormTab = wormTab(:,:,1);%mod 0.5
 helicalTab = helicalTab(:,:,1);
+
 
 for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different motor speeds
    
