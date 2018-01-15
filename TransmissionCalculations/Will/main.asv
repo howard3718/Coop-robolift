@@ -46,7 +46,7 @@ mechanismTorque = 3.54; %Nm
 wormTab = wormTab(:,:,1);%mod 0.5
 helicalTab = helicalTab(:,:,1);
 
-transmission.ratio = motorSpeed/mechanismSpeed; %calculate ratio
+transmission.ratio = motorSpeed/mechanism.speed; %calculate ratio
    
 potentialGears = gearSelection(transmission.ratio,wormTab,helicalTab);   
 potentialGears = efficiency(potentialGears,motorSpeed,wormDiam);   
@@ -60,9 +60,6 @@ transmissionRatioAdj = transmission.ratio / effCheap;
 potentialAdj = gearSelection(transmissionRatioAdj,wormTab,helicalTab);
 potentialAdj = efficiency(potentialAdj,motorSpeed,wormDiam);   
 potentialAdj = sortrows(potentialAdj,6);
-
-%Potential gears sorted by cost and at an appropriate ratio for
-%inefficiencies.
    
    
    
