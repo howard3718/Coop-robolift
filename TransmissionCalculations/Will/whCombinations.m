@@ -1,7 +1,7 @@
 %A function to find valid combinations when using worm and helical.
 
 function [potential] = whCombinations(helicRatios,wormRatios,ratio)
-    error = 0.01;
+    error = ratio*0.01;
     
     rowH = size(helicRatios,1);
     rowW = size(wormRatios,1);
