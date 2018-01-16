@@ -1,7 +1,7 @@
 %A function to find valid combinations when using helical and helical.
 
 function [potential] = hhCombinations(helicRatios,ratio)
-    error = 0.05;
+    error = 0.01*ratio;
     
     rowH = size(helicRatios,1);
     
