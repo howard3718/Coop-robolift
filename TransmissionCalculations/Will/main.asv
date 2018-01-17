@@ -11,9 +11,6 @@ clear
 
 %mod: 0.5, 0.8, 1, 1.25, 1.5
 
-%speed of the motor
-motorSpeed = 13360;
-
 %Limits on the number of teeth on a gear
 wormMax = 120;
 helicalMax = 10;
@@ -35,6 +32,8 @@ end
 %% Variables that can be changed. %%
 wormDiam = 0.012; %m
 helicalEfficiency = 0.95;
+%speed of the motor
+motorSpeed = 13360; %rpm
 
 %folder = 'testEff1/';
 
@@ -46,7 +45,7 @@ mechanismTorque = 3.54; %Nm
 wormTab = wormTab(:,:,1);%mod 0.5
 helicalTab = helicalTab(:,:,1);
 
-transmission.ratio = motorSpeed/mechanism.speed; %calculate ratio
+transmission.ratio = motorSpeed/mechanismSpeed; %calculate ratio
    
 potentialGears = gearSelection(transmission.ratio,wormTab,helicalTab);   
 potentialGears = efficiency(potentialGears,motorSpeed,wormDiam);   
@@ -60,16 +59,17 @@ transmissionRatioAdj = transmission.ratio / effCheap;
 potentialAdj = gearSelection(transmissionRatioAdj,wormTab,helicalTab);
 potentialAdj = efficiency(potentialAdj,motorSpeed,wormDiam);   
 potentialAdj = sortrows(potentialAdj,6);
-   
-   
-   
-   %change this
-%    motorTorque = mechanism.torque*efficiency*ratio; %this isnt includingn the error in ratio.
-%    motorPower = motorTorque*motorSpeed*(30/pi());
-%    
-%    filename = strcat(folder,'power',num2str(motorPower),'torque',num2str(motorTorque),'speed',num2str(motorSpeed));
-%    csvwrite(filename,potential);
-%end
+
+%Potential gears sorted by cost and at an appropriate ratio for
+%inefficiencies.
+
+%% Remove repeats %%
+
+%% Gear stress calculations %%
+
+
+%% Data Presentation %%
+
    
    
        
