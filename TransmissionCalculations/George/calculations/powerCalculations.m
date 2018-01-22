@@ -1,5 +1,5 @@
 %power calculations for cooperative lifting
-
+%% System design
 %references can be found to say that the incline of a scissor lift should
 %not be less than 10 degrees when loaded to avoid excessive torque 
 minTheta = 10*pi/180;
@@ -52,14 +52,11 @@ s = deltaX;
 time = 15;
 a = 2*s/(time^2);
 
-%assume the power required is equal to the power lost to friction and the
-%power required to drive up the load
-
+%assume the power required is equal to the power lost to friction
 %note the power changes as the speed changes with constact acceleration
 step = 0.0001;
 frictionPower = zeros(1,(time/step)+1); %preallocate array space
 liftingPower = zeros(1,(time/step)+1);
-motorPower = zeros(1,(time/step)+1);
 timeArray = 0:step:time;                %for the power time plot
 velocity = zeros(1,(time/step)+1);      
 omegaArray = zeros(1,(time/step)+1);
@@ -74,17 +71,13 @@ for t = 0:step:time
     %the change in angle theta is realated to speed using the following
     %equation
     frictionPower(1,round(t/step)+1) = ((tan(leadPhi)+muKinetic)/(1-muKinetic*tan(leadPhi)))*((W + mass*a)/tan(theta))*meanRadius*omega;
-    
-%     liftingPower(1,round(t/step)+1) = ((W+mass*a)/tan(theta))*v;
-    
-    motorPower(1,round(t/step)+1) = frictionPower(1,round(t/step)+1);
 end
 %no idea why i have to round those values...
 
-plot(timeArray,motorPower);
+plot(timeArray,frictionPower);
 xlabel('Time (s)');
 ylabel('Power (W)');
-title('For constant acceleration of screw linearly');
+title('For constant acceleration of screw horizontally');
 
 
 %write a function relating x and y using the formula y= x*tan(theta)

@@ -1,7 +1,7 @@
 %%%  CALCULATIONS TO DETERMINE THE MOTOR AND TRANSMISSION OF THE ROBOTS %%%
 
 %% Definitions %%
-
+clear
 %The gears used here will be worm, spur and helix. See logbook.
 
 %The transmission will have no more than one worm drive. See logbook.
@@ -12,8 +12,9 @@
 %mod: 0.5, 0.8, 1, 1.25, 1.5
 
 
-minMotorSpeed = 3600; %rpm
-maxMotorSpeed = 5000; %rpm
+% minMotorSpeed = 13350; %rpm
+% maxMotorSpeed = 13370; %rpm
+motorSpeed = 13360;
 
 wormMax = 120;
 helicalMax = 10;
@@ -32,20 +33,21 @@ for i = 1:2
 end
 
 %% Variables that can be changed. %%
-motorSpeedI = 100;
-
+%motorSpeedI = 10;
+wormDiam = 0.012; %m
 helicalEfficiency = 0.95;
 folder = 'testEff1/';
 
 %% Main Script %%
 
-mechanism.speed = 60; %rpm
-mechanism.torque = 3; %Nm
+mechanism.speed = (6.64*60)/(2*pi); %rpm
+mechanism.torque = 3.54; %Nm
 
 wormTab = wormTab(:,:,1);%mod 0.5
 helicalTab = helicalTab(:,:,1);
 
-for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different motor speeds
+
+%for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different motor speeds
    
    transmission.ratio = motorSpeed/mechanism.speed; %calculate ratio
    
@@ -53,13 +55,24 @@ for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different mot
    
    potential = efficiency(potential,motorSpeed,wormDiam);
    
+   potential = sortrows(potential,6);
+   
+   effCheap = potential(1,7);
+   
+   transmissionRatioAdj = transmission.ratio / effCheap;
+   
+   potentialAdj = gearSelection(transmissionRatioAdj,wormTab,helicalTab);
+   potentialAdj = sortrows(potentialAdj,6);
+   
+   
+   
    %change this
 %    motorTorque = mechanism.torque*efficiency*ratio; %this isnt includingn the error in ratio.
 %    motorPower = motorTorque*motorSpeed*(30/pi());
 %    
 %    filename = strcat(folder,'power',num2str(motorPower),'torque',num2str(motorTorque),'speed',num2str(motorSpeed));
 %    csvwrite(filename,potential);
-end
+%end
    
    
        

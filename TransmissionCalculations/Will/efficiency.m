@@ -4,7 +4,7 @@ function potential = efficiency(potentialOld,motorSpeed,wormDiam)
     helicalEff = 0.95;
     wormEff = wormEfficiency(motorSpeed,wormDiam);
     %identify what gears are used.
-    id = find(potentalOld(:,1:cPot-1)); %edit if add more info to potential
+    id = find(potentialOld(:,1:cPot-1)); %edit if add more info to potential
     locations = zeros(rPot,cPot-1);
     locations(id) = 1;
     efficiencyID = sum(locations,2);
@@ -21,5 +21,5 @@ function potential = efficiency(potentialOld,motorSpeed,wormDiam)
     efficiency(hh) = helicalEff*helicalEff;
     whh = find(~(efficiencyID - 5));
     efficiency(whh) = wormEff*helicalEff*helicalEff;
-    potential = [oldPotential,efficiency];
+    potential = [potentialOld,efficiency];
 end

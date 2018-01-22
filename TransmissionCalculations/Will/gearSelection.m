@@ -11,22 +11,22 @@ function [potential] = gearSelection(ratio,wormTab,helicalTab) %for now leaving 
     potential = hCombinations(helicRatios,ratio);
     rows = size(potential,1);
     
-    potential2 = wCombinations(wormRatios,ratio);
-    rows2 = size(potential2,1);
-    if sum(potential) == 0
-        potential = potential2;
-    else
-        potential(rows+1:rows2+rows,:) = potential2;
-    end
+%     potential2 = wCombinations(wormRatios,ratio);
+%     rows2 = size(potential2,1);
+%     if sum(potential) == 0
+%         potential = potential2;
+%     else
+%         potential(rows+1:rows2+rows,:) = potential2;
+%     end
     
-    rows = size(potential,1);
-    potential2 = hhCombinations(helicRatios,ratio);
-    rows2 = size(potential2,1);
-    if sum(potential) == 0
-        potential = potential2;
-    else
-        potential(rows+1:rows2+rows,:) = potential2;
-    end
+%     rows = size(potential,1);
+%     potential2 = hhCombinations(helicRatios,ratio);
+%     rows2 = size(potential2,1);
+%     if sum(potential) == 0
+%         potential = potential2;
+%     else
+%         potential(rows+1:rows2+rows,:) = potential2;
+%     end
     
     rows = size(potential,1);
     potential2 = whCombinations(helicRatios,wormRatios,ratio);

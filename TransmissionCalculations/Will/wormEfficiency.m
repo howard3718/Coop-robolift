@@ -6,7 +6,7 @@ function [efficiency] = wormEfficiency(speed,wormDiam)
     leadAngle = 2.3833; %decimal degrees
     
     %Calculate friction factor
-    slidingVelocity = (speed*wormDiam)/(19098*cosd(leadAngle); %from Peter Childs
+    slidingVelocity = (speed*wormDiam*10^3)/(19098*cosd(leadAngle)); %from Peter Childs
     if slidingVelocity <= 0.0508
         f = 0.124*exp(-2.233*slidingVelocity^0.645);
     else
