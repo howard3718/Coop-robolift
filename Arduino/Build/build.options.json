@@ -1,0 +1,10 @@
+{
+  "builtInLibrariesFolders": "C:\\Program Files (x86)\\Arduino\\libraries",
+  "customBuildProperties": "build.path=c:\\Users\\Alex\\OneDrive - Imperial College London\\ME3\\DMT\\Coop-robolift\\Arduino\\Build,build.warn_data_percentage=75,runtime.tools.bossac.path=C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages\\adafruit\\tools\\bossac\\1.6.1-arduino,runtime.tools.openocd.path=C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages\\adafruit\\tools\\openocd\\0.9.0-arduino,runtime.tools.CMSIS.path=C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages\\adafruit\\tools\\CMSIS\\4.0.0-atmel,runtime.tools.arm-none-eabi-gcc.path=C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\arm-none-eabi-gcc\\4.8.3-2014q1",
+  "fqbn": "adafruit:samd:adafruit_feather_m0",
+  "hardwareFolders": "C:\\Program Files (x86)\\Arduino\\hardware,C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages",
+  "otherLibrariesFolders": "D:\\IoT\\iot_network\\arduino\\libraries",
+  "runtime.ide.version": "10805",
+  "sketchLocation": "c:\\Users\\Alex\\OneDrive - Imperial College London\\ME3\\DMT\\Coop-robolift\\Arduino\\MotorTest\\MotorTest.ino",
+  "toolsFolders": "C:\\Program Files (x86)\\Arduino\\tools-builder,C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr,C:\\Users\\Alex\\AppData\\Local\\Arduino15\\packages"
+}
