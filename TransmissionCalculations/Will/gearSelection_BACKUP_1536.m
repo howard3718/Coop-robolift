@@ -8,6 +8,19 @@ function [potential] = gearSelection(ratio,wormTab,helicalTab) %for now leaving 
     helicRatios = helicRatio(helicalTab); %ratio|cost|gear1|gear2
     wormRatios = wormTab; %gear|cost
     
+<<<<<<< HEAD
+    potential2 = wCombinations(wormRatios,ratio);
+    rows2 = size(potential2,1);
+    if sum(potential) == 0
+        potential = potential2;
+    else
+        potential(rows+1:rows2+rows,:) = potential2;
+    end
+    
+    rows = size(potential,1);
+    potential2 = hhCombinations(helicRatios,ratio);
+    rows2 = size(potential2,1);
+=======
     %initialte potential and rows
     potential = zeros(1,6);
     rows = size(potential,1);
@@ -16,12 +29,16 @@ function [potential] = gearSelection(ratio,wormTab,helicalTab) %for now leaving 
     potential2 = wCombinations(wormRatios,ratio);
     rows2 = size(potential2,1);
     %add any potentials to the potential matrix
+>>>>>>> bd394a11376476a3b081e4ac72763d11a6f64011
     if sum(potential) == 0
         potential = potential2;
     else
         potential(rows+1:rows2+rows,:) = potential2;
     end
+<<<<<<< HEAD
+=======
     rows = size(potential,1);
+>>>>>>> bd394a11376476a3b081e4ac72763d11a6f64011
     
     %Do any two sets of helical gears meet the requirements...
     potential2 = hhCombinations(helicRatios,ratio);

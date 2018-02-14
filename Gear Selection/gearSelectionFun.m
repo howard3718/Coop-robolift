@@ -1,8 +1,8 @@
 % A FUNCTION TO CALCULATE WHICH GEARS TO USE %
-%initially try mod 0.5
 
 
-function [potential] = gearSelection(ratio,wormTab,helicalTab) %for now leaving out spurtab
+
+function [potential] = gearSelectionFun(ratio,wormTab,helicalTab)
     
     %determine combinations
     helicRatios = helicRatio(helicalTab); %ratio|cost|gear1|gear2
