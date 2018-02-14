@@ -5,46 +5,54 @@
 function [potential] = gearSelection(ratio,wormTab,helicalTab) %for now leaving out spurtab
     
     %determine combinations
-    helicRatios = helicRatio(helicalTab);
-    wormRatios = wormTab;
-
-    potential = hCombinations(helicRatios,ratio);
+    helicRatios = helicRatio(helicalTab); %ratio|cost|gear1|gear2
+    wormRatios = wormTab; %gear|cost
+    
+    %initialte potential and rows
+    potential = zeros(1,6);
     rows = size(potential,1);
     
-%     potential2 = wCombinations(wormRatios,ratio);
-%     rows2 = size(potential2,1);
-%     if sum(potential) == 0
-%         potential = potential2;
-%     else
-%         potential(rows+1:rows2+rows,:) = potential2;
-%     end
-    
-%     rows = size(potential,1);
-%     potential2 = hhCombinations(helicRatios,ratio);
-%     rows2 = size(potential2,1);
-%     if sum(potential) == 0
-%         potential = potential2;
-%     else
-%         potential(rows+1:rows2+rows,:) = potential2;
-%     end
-    
+    %Will any worm/wheel alone meet the requirements
+    potential2 = wCombinations(wormRatios,ratio);
+    rows2 = size(potential2,1);
+    %add any potentials to the potential matrix
+    if sum(potential) == 0
+        potential = potential2;
+    else
+        potential(rows+1:rows2+rows,:) = potential2;
+    end
     rows = size(potential,1);
+    
+    %Do any two sets of helical gears meet the requirements...
+    potential2 = hhCombinations(helicRatios,ratio);
+    rows2 = size(potential2,1);
+    %Add these to the potential matrix.
+    if sum(potential) == 0
+        potential = potential2;
+    else
+        potential(rows+1:rows2+rows,:) = potential2;
+    end
+    rows = size(potential,1);
+    
+    %Do any worm/wheel plus helic set meet the requirements
     potential2 = whCombinations(helicRatios,wormRatios,ratio);
     rows2 = size(potential2,1);
+    %Add these to the potential matrix.
     if sum(potential) == 0
         potential = potential2;
     else
         potential(rows+1:rows2+rows,:) = potential2;
     end
-    
     rows = size(potential,1);
+    
+    %Do any worm/wheel + 2 sets of helicals meet the requirements?
     potential2 = whhCombinations(helicRatios,wormRatios,ratio);
     rows2 = size(potential2,1);
+    %Add these to the potential matrix
     if sum(potential) == 0
         potential = potential2;
     else
         potential(rows+1:rows2+rows,:) = potential2;
     end
-    
-    
+  
 end

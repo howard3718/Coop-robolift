@@ -63,10 +63,9 @@ potentialAdj = sortrows(potentialAdj,6);
 %Potential gears sorted by cost and at an appropriate ratio for
 %inefficiencies.
 
-%% Remove repeats %% 
+%% Remove repeats %%
 
 %% Gear stress calculations %%
-
 
 
 %% Data Presentation %%
