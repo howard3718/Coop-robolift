@@ -14,7 +14,7 @@ clear
 
 % minMotorSpeed = 13350; %rpm
 % maxMotorSpeed = 13370; %rpm
-motorSpeed = 13360;
+motorSpeed = 4289;
 
 wormMax = 120;
 helicalMax = 10;
@@ -45,6 +45,9 @@ mechanism.torque = 3.54; %Nm
 
 wormTab = wormTab(:,:,1);%mod 0.5
 helicalTab = helicalTab(:,:,1);
+
+%Add cost of worm 
+wormTab(:,2) = wormTab(:,2) + 15;
 
 
 %for motorSpeed = minMotorSpeed:motorSpeedI:maxMotorSpeed %loop for different motor speeds
