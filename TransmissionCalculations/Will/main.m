@@ -33,7 +33,7 @@ end
 wormDiam = 0.012; %m
 helicalEfficiency = 0.95;
 %speed of the motor
-motorSpeed = 13360; %rpm
+motorSpeed = 4289; %rpm
 
 %folder = 'testEff1/';
 
