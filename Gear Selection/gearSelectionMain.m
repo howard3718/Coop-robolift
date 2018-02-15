@@ -29,6 +29,10 @@ end
 %   Worm = 5:1 to 75:1
 
 wormDiam = [12;12;15;16;20];
+mod = [0.5;0.8;1.0;1.25;1.5];
+faceWidthHelical = [6;10;12;12;16];
+materialRateSurface = [500;1400]; %|delrin|steel|
+materialRateBend = [3900;17000]; %|delrin|steel|
 
 %% Input Parameters
 
@@ -68,6 +72,20 @@ potentialGears = sortrows(potentialGears,6);
 
 
 %% Gear Stresses
+
+%Start with the first one on the list.
+gearCombination = potentialGears(1,:);
+ratio = ratioEvaluate(gearCombination);
+
+%Collect information
+modHelical = mod(1); 
+Fhelical = faceWidthHelical(1)*0.0394; %in
+runTime = 12; % - 1,6,12 or 24 -could be updated later
+Sc = materialRateSurface(1);
+Sb = materialRateBend(1);
+
+gearStressInput = [modHelical,Fhelical,runTime,Sc,Sb];
+output = gearStressHelical(gearCombination,gearStressInput,motorSpeed,ratio);
 
 %% Data Presentation
 
