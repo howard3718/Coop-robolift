@@ -74,18 +74,24 @@ potentialGears = sortrows(potentialGears,6);
 %% Gear Stresses
 
 %Start with the first one on the list.
-gearCombination = potentialGears(1,:);
+gearCombination = potentialGears(2,:);
 ratio = ratioEvaluate(gearCombination);
 
-%Collect information
+%Collect information about worm
+
+
+%Collect information about helical
 modHelical = mod(1); 
 Fhelical = faceWidthHelical(1)*0.0394; %in
 runTime = 12; % - 1,6,12 or 24 -could be updated later
 Sc = materialRateSurface(1);
 Sb = materialRateBend(1);
 
-gearStressInput = [modHelical,Fhelical,runTime,Sc,Sb];
-output = gearStressHelical(gearCombination,gearStressInput,motorSpeed,ratio);
+gearStressInputH  = [modHelical,Fhelical,runTime,Sc,Sb];
+
+if gearCombination(2) ~= 0
+    maxLoadsArray = gearStressHelical(gearCombination,gearStressInputH,motorSpeed);
+end
 
 %% Data Presentation
 
