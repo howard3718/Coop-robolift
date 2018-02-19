@@ -1,5 +1,5 @@
 function [Xc] = XcEvaluate(speed,runTime)
-%XCEVALUATE Summary of this function goes here
+%XCEVALUATE 
 %Uses the HPC tables to provide the value of Xc based on the speed and
 %runTime
 XcTable = xlsread(file,2); %change file when debugging and organising files.
