@@ -31,6 +31,8 @@ end
 wormDiam = [12;12;15;16;20];
 mod = [0.5;0.8;1.0;1.25;1.5];
 wormOD = [13;13.6;17;18.5;];
+wormLeadDeg = [2;3;3;4;4];
+wormLeadMin = [23;48;48;28;17];
 faceWidthHelical = [6;10;12;12;16];
 materialRateSurface = [500;1400]; %|delrin|steel|
 materialRateBend = [3900;17000]; %|delrin|steel|
@@ -90,9 +92,13 @@ Sb = materialRateBend(1);
 
 modWorm = mod(1);
 PCDWorm = wormDiam(1);
+ODWorm = wormOD(1);
+wormLead = wormLeadDeg(1) + wormLeadMin(1)/60;
+wheelTeeth = gearCombination(1);
+wormInput = [modWorm;PCDWorm;wormOD;wormLead;wheelTeeth;Sc;Sb];
 
 if gearCombination(1) ~= 0
-    maxLoadsWorm = gearStressWorm();
+    maxLoadsWorm = gearStressWorm(wormInput,motorSpeed); %Nm
 end
 
 gearStressInputH  = [modHelical,Fhelical,runTime,Sc,Sb];

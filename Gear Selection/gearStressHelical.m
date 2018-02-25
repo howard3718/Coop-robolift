@@ -41,10 +41,10 @@ maxLoad1aWear = maxLoadWearImp/0.2248; %N
 %Stresses in the 2nd helical gear
 speed1b = speed1a /(h1a/h1b);
 
-Xb = XbEvaluate(speed1b,runTime);
-Xc = XcEvaluate(speed1b,runTime);
-Y = YEvaluate(h1b,h1a);
-Z = ZEvaluate(h1b,h1a);
+Xb = XbEvaluateH(speed1b,runTime);
+Xc = XcEvaluateH(speed1b,runTime);
+Y = YEvaluateH(h1b,h1a);
+Z = ZEvaluateH(h1b,h1a);
 
 maxLoadStrengthImp = (Xb * Y * Sb * F)/Dp; %lbs
 maxLoadWearImp = (Xc * Z * Sc * F)/K; %lbs 

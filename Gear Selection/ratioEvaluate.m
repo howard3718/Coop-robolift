@@ -3,8 +3,8 @@
 function ratio = ratioEvaluate(gearCombination)
 
 w = gearCombination(1);
-h1 = gearCombination(2)/gearCombination(2);
-h2 = gearCombination(3)/gearCombination(4);
+h1 = gearCombination(2)/gearCombination(3);
+h2 = gearCombination(4)/gearCombination(5);
 
 wIndicate = 1;
 h1Indicate = 2;
@@ -13,10 +13,10 @@ h2Indicate = 4;
 if w == 0
     wIndicate = 0;
 end
-if h1 == 0
+if h1 == 0 || isnan(h1) == 1
     h1Indicate = 0;
 end
-if h2 == 0
+if h2 == 0 || isnan(h2) == 1 
     h2Indicate = 0;
 end
 
