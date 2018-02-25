@@ -1,4 +1,4 @@
-function Z = ZEvaluate(teeth,matingTeeth)
+function Z = ZEvaluateH(teeth,matingTeeth)
 %ZEVALUATE Summary of this function goes here
 %2D interpolation for zone factor
 ZTable = xlsread('H:\DMT 2017\Coop-robolift\Gear Selection\Zone Factor.xlsx',2);

@@ -1,4 +1,4 @@
-function strength = YEvaluate(teeth,matingTeeth)
+function strength = YEvaluateH(teeth,matingTeeth)
 %YEVALUATE Summary of this function goes here
 %Interpolates the table of strength factors.
 YTable = xlsread('H:\DMT 2017\Coop-robolift\Gear Selection\Strength Factor.xlsx',2);

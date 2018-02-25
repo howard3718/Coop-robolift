@@ -26,10 +26,10 @@ else
 end
 
 %Streses in 1st helical gear.
-Xb = XbEvaluate(speed1a,runTime);
-Xc = XcEvaluate(speed1a,runTime);
-Y = YEvaluate(h1a,h1b);
-Z = ZEvaluate(h1a,h1b);
+Xb = XbEvaluateH(speed1a,runTime);
+Xc = XcEvaluateH(speed1a,runTime);
+Y = YEvaluateH(h1a,h1b);
+Z = ZEvaluateH(h1a,h1b);
 Dp = 25.4/mod;
 K = Dp^0.8;
 

@@ -1,6 +1,5 @@
 function [ output_args ] = gearStressWorm( input_args )
 %GEARSTRESSWORM Calculate the stress in the worm and wheel.
-%assume 12 hours a day. - for now check continuity. 
 
 leadAngle = 2 + 23/60;
 speed = motorSpeed;
@@ -15,7 +14,6 @@ cosine = wormPCD/wormOD;
 theta = acosd(cosine);
 
 Lr = 2*theta*(wormOD/2)*0.017545;
-
 
 
 end

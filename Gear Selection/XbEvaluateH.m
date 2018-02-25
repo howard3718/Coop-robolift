@@ -1,4 +1,4 @@
-function Xb = XbEvaluate(speed,runTime)
+function Xb = XbEvaluateH(speed,runTime)
 %XBEVALUATE 
 %Uses the HPC tables to provide the value of Xb based on the speed and
 %runTime
