@@ -1,7 +1,7 @@
 % A function which includes efficiency in the potential table 
 function potential = efficiency(potentialOld,motorSpeed,wormDiam)
     [rPot,cPot] = size(potentialOld);
-    helicalEff = 0.98;
+    spurEff = 0.98;
     wormEff = wormEfficiency(motorSpeed,wormDiam);
     %identify what gears are used.
     id = find(potentialOld(:,1:cPot-1)); %edit if add more info to potential
@@ -13,13 +13,13 @@ function potential = efficiency(potentialOld,motorSpeed,wormDiam)
     %calculate efficienies
     w = find(~(efficiencyID - 1));
     efficiency(w) = wormEff;
-    h = find(~(efficiencyID - 2));
-    efficiency(h) = helicalEff;
-    wh = find(~(efficiencyID - 3));
-    efficiency(wh) = wormEff*helicalEff;
-    hh = find(~(efficiencyID - 4));
-    efficiency(hh) = helicalEff*helicalEff;
-    whh = find(~(efficiencyID - 5));
-    efficiency(whh) = wormEff*helicalEff*helicalEff;
+    s = find(~(efficiencyID - 2));
+    efficiency(s) = spurEff;
+    ws = find(~(efficiencyID - 3));
+    efficiency(ws) = wormEff*spurEff;
+    ss = find(~(efficiencyID - 4));
+    efficiency(ss) = spurEff*spurEff;
+    wss = find(~(efficiencyID - 5));
+    efficiency(wss) = wormEff*spurEff*spurEff;
     potential = [potentialOld,efficiency];
 end

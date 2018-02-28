@@ -2,14 +2,14 @@
 
 
 
-function [potential] = gearSelectionFun(ratio,wormTab,helicalTab)
+function [potential] = gearSelectionFun(ratio,teethOptionsWheel,teethOptionsSpur)
     
     %determine combinations
-    helicRatios = helicRatio(helicalTab); %ratio|cost|gear1|gear2
-    wormRatios = wormTab; %gear|cost
+    spurRatios = spurRatio(teethOptionsSpur); %ratio|gear1|gear2
+    wormRatios = teethOptionsWheel; %gear/ratio
     
     %initialte potential and rows
-    potential = zeros(1,6);
+    potential = zeros(1,5);
     rows = size(potential,1);
     
     %Will any worm/wheel alone meet the requirements
@@ -23,8 +23,8 @@ function [potential] = gearSelectionFun(ratio,wormTab,helicalTab)
     end
     rows = size(potential,1);
     
-    %Do any two sets of helical gears meet the requirements...
-    potential2 = hhCombinations(helicRatios,ratio);
+    %Do any two sets of spur gears meet the requirements...
+    potential2 = ssCombinations(spurRatios,ratio);
     rows2 = size(potential2,1);
     %Add these to the potential matrix.
     if sum(potential) == 0
@@ -35,7 +35,7 @@ function [potential] = gearSelectionFun(ratio,wormTab,helicalTab)
     rows = size(potential,1);
     
     %Do any worm/wheel plus helic set meet the requirements
-    potential2 = whCombinations(helicRatios,wormRatios,ratio);
+    potential2 = wsCombinations(spurRatios,wormRatios,ratio);
     rows2 = size(potential2,1);
     %Add these to the potential matrix.
     if sum(potential) == 0
@@ -46,7 +46,7 @@ function [potential] = gearSelectionFun(ratio,wormTab,helicalTab)
     rows = size(potential,1);
     
     %Do any worm/wheel + 2 sets of helicals meet the requirements?
-    potential2 = whhCombinations(helicRatios,wormRatios,ratio);
+    potential2 = wssCombinations(spurRatios,wormRatios,ratio);
     rows2 = size(potential2,1);
     %Add these to the potential matrix
     if sum(potential) == 0
