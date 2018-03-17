@@ -1,0 +1,66 @@
+% Calculations to find the stress in the links of scissor arms.
+% Safety factor is given by Von Mises
+
+%Setup for these calculations have been done in Howard's log book. However
+%it was found max stress always occurs on the under side of the bar, and
+%just to the bottom side of the middle pivot. This is because the bending
+%moment is at a max at the middle pivot, but the max compressive stress is
+%constant from the middle to bottom pivot so just offsetting slightly finds
+%the maximum possible stress. Also the shear force in the material is also
+%at a consatnt throughout the material, axcept exactly at B where it is 0.
+
+%See Howard's log book and relevant graphs for details.
+
+clear all
+
+%Set Up Variables
+L = 0.090; %2L is length of beam from pivot to pivot
+W = (125*9.81)/4;  %125 kg converted to Newtons then divided by 4 links
+BeamWidth = 8e-3; %m
+BeamHeight = 18e-3; %m
+HoleDiameter = 8e-3; %m
+theta = (pi/18:pi/180:((8/9)*(pi/2))); %scissor always starts above 10 degs, opposite means max 80
+XArea = BeamWidth*BeamHeight;
+y = BeamHeight/2;
+I = (BeamWidth/12)*((BeamHeight^3)-(HoleDiameter^3)); % Second moment of area, including pivot hole
+%^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^% Only works for 4 rectangular x-section
+
+%Material constants
+Yield = 250*10^6;
+
+%1st step
+MaxBM = W*cos(theta)*L; 
+AxialForce = (W*sin(theta))+((2*W*cos(theta))./tan(theta)); %compressive
+ShearForce = W*cos(theta);
+
+%Calculations
+StressX = (((W*sin(theta))+((2*W*cos(theta))./tan(theta)))/XArea)+ ((MaxBM/I)*y);
+%Assuming Stress Y = 0
+TauXY = W*cos(theta);
+
+%Find principal stresses
+Stress1 = (StressX/2) + sqrt(((StressX/2).^2)+(TauXY.^2)); 
+Stress2 = (StressX/2) - sqrt(((StressX/2).^2)+(TauXY.^2)); 
+
+%Von Mises Safety Factor Calc
+Y = sqrt(0.5*(((Stress1-Stress2).^2)+(Stress2.^2)+(Stress1.^2)));
+
+Safety_Factor_against_yield = Yield/max(Y)
+[a,b] = max(Yield);
+Angle_of_max_stress = theta(b)*(180/pi)
+
+plot (theta*(180/pi), Stress1, 'r o' ,theta*(180/pi), Stress2, 'b x')
+legend ('Principal Stress 1', 'Principal Stress 2')
+title ('Plot of max stress in scissor links against angle of link')
+xlabel ('Theta of scissor link (degrees)')
+ylabel ('Magnitude of principle stresses')
+
+pause
+%Safety factor at each angle
+SafetyFactor = Yield./Y;
+
+plot (theta*(180/pi), SafetyFactor, 'm x')
+title ('Plot of safety factor in scissor links against angle of link')
+xlabel ('Theta of scissor link (degrees)')
+ylabel ('Safety Factor against yield')
+
